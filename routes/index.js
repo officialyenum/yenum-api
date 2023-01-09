@@ -7,11 +7,11 @@ const response = require("../utils/response");
 router.get("/", indexController.index);
 
 //Game
-router.get("/games", gameController.index);
-router.post('/games', gameController.create);
-router.patch('/games/:id', gameController.update);
-router.get('/games/:id', gameController.show);
-router.delete('/games/:id', gameController.delete);
+router.get("/api/games", gameController.index);
+router.post('/api/games', gameController.create);
+router.patch('/api/games/:id', gameController.update);
+router.get('/api/games/:id', gameController.show);
+router.delete('/api/games/:id', gameController.delete);
 
 //REGISTER
 // router.post("/register", userController.register);

@@ -23,20 +23,7 @@ const port = process.env.PORT || 80
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-app.use("/", async (req, res) => {
-  try {
-    response(
-      res,
-      "success",
-      "Welcome to Yenum Api Endpoints",
-      [],
-      200
-    );
-  } catch (err) {
-    response(res, "error", err, [], 500);
-  }
-});
-app.use('/api', routes)
+app.use('/', routes)
 app.use((req, res) => {
   response(
     res,
