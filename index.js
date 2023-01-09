@@ -8,7 +8,6 @@ const bodyParser = require("body-parser");
 const routes = require('./routes/index.js')
 require('./config/db.config');
 const response = require("./utils/response");
-const indexController = require("./controllers/index");
 
 dotenv.config();
 
@@ -25,7 +24,19 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use('/api', routes)
-app.use("/", indexController.index);
+app.use("/", async (req, res) => {
+  try {
+    response(
+      res,
+      "success",
+      "Welcome to Yenum Api Endpoints",
+      [],
+      200
+    );
+  } catch (err) {
+    response(res, "error", err, [], 500);
+  }
+});
 app.use((req, res) => {
   response(
     res,
