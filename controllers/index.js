@@ -1,3 +1,5 @@
+const response = require("../utils/response");
+
 exports.index = async (req, res) => {
     try {
         response(
