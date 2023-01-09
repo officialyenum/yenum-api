@@ -4,7 +4,7 @@ const gameController = require("../controllers/game");
 const response = require("../utils/response");
 
 // Home
-router.post("/", indexController.index);
+router.get("/", indexController.index);
 
 //Game
 router.get("/games", gameController.index);
