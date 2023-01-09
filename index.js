@@ -23,7 +23,6 @@ const port = process.env.PORT || 80
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-app.use('/api', routes)
 app.use("/", async (req, res) => {
   try {
     response(
@@ -37,6 +36,7 @@ app.use("/", async (req, res) => {
     response(res, "error", err, [], 500);
   }
 });
+app.use('/api', routes)
 app.use((req, res) => {
   response(
     res,
