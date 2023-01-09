@@ -38,7 +38,13 @@ app.use("/", async (req, res) => {
   }
 });
 app.use((req, res) => {
-  res.status(404)
+  response(
+    res,
+    "error",
+    "Endpoint does not exist",
+    [],
+    404
+  );
 })
 app.listen(port, () => {
   console.log("Listening on port " + port)
