@@ -1,0 +1,16 @@
+version: "3"
+services:
+    yenum-api:
+        container_name: yenum-api
+        environment:
+            - NODE_ENV=production
+        build:
+            context: .
+            dockerfile: Dockerfile.prod
+        command: npm start
+    nginx:
+        restart: always
+        build:
+            context: ./nginx
+        ports:
+            - "80:80"
