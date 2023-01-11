@@ -55,7 +55,6 @@ This is the basic flow of the application.
 ### Documentation
 
 -   Please click [here](https://documenter.getpostman.com/view/8719009/2s8Z76w9qx) to access the Postman Collection
--   Please click [here](https://nestjs-movies-crud-api.herokuapp.com/api-doc) to access the Swagger Documentation
 
 ### Deployment
 
