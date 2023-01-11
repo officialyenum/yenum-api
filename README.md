@@ -64,4 +64,4 @@ This project is hosted on [heroku](https://heroku.com)
 ### Limitations
 - Caching is not implemented
 - Pagination is not implemented
-- Test is not implemented
+- Testing is not implemented
