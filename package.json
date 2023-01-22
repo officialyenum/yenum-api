@@ -10,7 +10,6 @@
     "copy-assets": "ts-node tools/copyAssets.ts",
     "clean-src": "rimraf src",
     "build": "npm-run-all clean lint tsc copy-assets clean-src",
-    "deploy": "git add . && git commit -m Heroku && git push heroku main",
     "start": "NODE_ENV=production node dist/server.js",
     "dev:build": "npm-run-all clean lint tsc copy-assets",
     "dev:start": "npm-run-all dev:build start",
