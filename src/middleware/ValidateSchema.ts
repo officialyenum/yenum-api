@@ -3,17 +3,19 @@ import { Request, Response, NextFunction } from 'express';
 import Logging from '../library/Logging';
 import { IUser } from '../models/User';
 import { IGame } from '../models/Game';
+import { IAnonymousMessage } from '../models/AnonymousMessage';
 
 export const ValidateSchema = (schema: ObjectSchema) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             await schema.validateAsync(req.body);
             next();
-        } catch (err) {
+        } catch (err: any) {
             Logging.error(err);
-            return res.status(422).json({
-                message: err
-            });
+            const errors =  err.details.map((error:any) => {
+                return { message: error.message, field: error.context.label};
+            })
+            return res.status(422).json({errors});
         }
     };
 };
@@ -41,6 +43,17 @@ export const Schemas = {
             url: Joi.string().required(),
             image_url: Joi.string().required(),
             tags: Joi.array().required()
+        })
+    },
+    anonymousMessage: {
+        get: Joi.object({
+            published: Joi.array().items(Joi.number().integer().valid(0, 1)).min(1).max(2).unique()
+        }),
+        create: Joi.object<IAnonymousMessage>({
+            content: Joi.string().required(),
+        }),
+        update: Joi.object<IAnonymousMessage>({
+            content: Joi.string().required(),
         })
     }
 };

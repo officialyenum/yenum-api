@@ -20,6 +20,7 @@ exports.config = {
     mongo: {
         url: MONGO_URL
     },
+    postgres: {},
     server: {
         port: SERVER_PORT
     },

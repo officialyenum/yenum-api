@@ -23,9 +23,10 @@ const ValidateSchema = (schema) => {
         }
         catch (err) {
             Logging_1.default.error(err);
-            return res.status(422).json({
-                message: err
+            const errors = err.details.map((error) => {
+                return { message: error.message, field: error.context.label };
             });
+            return res.status(422).json({ errors });
         }
     });
 };
@@ -53,6 +54,17 @@ exports.Schemas = {
             url: joi_1.default.string().required(),
             image_url: joi_1.default.string().required(),
             tags: joi_1.default.array().required()
+        })
+    },
+    anonymousMessage: {
+        get: joi_1.default.object({
+            published: joi_1.default.array().items(joi_1.default.number().integer().valid(0, 1)).min(1).max(2).unique()
+        }),
+        create: joi_1.default.object({
+            content: joi_1.default.string().required(),
+        }),
+        update: joi_1.default.object({
+            content: joi_1.default.string().required(),
         })
     }
 };
