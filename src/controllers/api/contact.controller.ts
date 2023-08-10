@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import Contact from '../../models/Contact';
 import axios, { AxiosResponse } from 'axios';
-import transporter from '../../services/mail-transporter';
+import mailTransporter from '../../services/mail-transporter';
 
 class ContactController {
     public static index = async (req: Request, res: Response, next: NextFunction) => {
@@ -37,13 +37,14 @@ class ContactController {
                 message: req.body.message,
                 sent_date: Date.now(),
             });
-            const msg = {
-                to: "oponechukwuyenum@gmail.com",
-                from: "admin@chuckymagic.com",
+            const mailDetails = {
+                from: 'oponechukwuyenum@gmail.com',
+                to: 'oponechukwuyenum@gmail.com',
                 subject: contact.project,
+                text: `Name : ${contact.name}, Email : ${contact.email}, Message: ${contact.message}`,
                 html: `<p>Name : ${contact.name},</p></br><p>Email : ${contact.email},</p></br><p>Message: ${contact.message}!</p>`
-              };
-            const resp: any = await transporter.send(msg);
+            };
+            const resp: any = await mailTransporter.sendMail(mailDetails);
             console.log(resp);
             await contact.save();
             return res.status(201).json({

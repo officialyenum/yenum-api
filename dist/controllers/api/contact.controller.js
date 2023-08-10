@@ -51,13 +51,14 @@ ContactController.create = (req, res, next) => __awaiter(void 0, void 0, void 0,
             message: req.body.message,
             sent_date: Date.now(),
         });
-        const msg = {
-            to: "oponechukwuyenum@gmail.com",
-            from: "admin@chuckymagic.com",
+        const mailDetails = {
+            from: 'oponechukwuyenum@gmail.com',
+            to: 'oponechukwuyenum@gmail.com',
             subject: contact.project,
+            text: `Name : ${contact.name}, Email : ${contact.email}, Message: ${contact.message}`,
             html: `<p>Name : ${contact.name},</p></br><p>Email : ${contact.email},</p></br><p>Message: ${contact.message}!</p>`
         };
-        const resp = yield mail_transporter_1.default.send(msg);
+        const resp = yield mail_transporter_1.default.sendMail(mailDetails);
         console.log(resp);
         yield contact.save();
         return res.status(201).json({
