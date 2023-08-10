@@ -59,16 +59,14 @@ ContactController.create = (req, res, next) => __awaiter(void 0, void 0, void 0,
             html: `<p>Name : ${contact.name},</p></br><p>Email : ${contact.email},</p></br><p>Message: ${contact.message}!</p>`
         };
         const resp = yield mail_transporter_1.default.sendMail(mailDetails);
-        console.log(resp);
         yield contact.save();
         return res.status(201).json({
             contact
         });
     }
     catch (error) {
-        console.log(error);
         if (error.response) {
-            return res.status(400).json({ err: error.response.body });
+            return res.status(400).json({ err: error.response });
         }
         return res.status(500).json({ err: error.message });
     }

@@ -45,15 +45,13 @@ class ContactController {
                 html: `<p>Name : ${contact.name},</p></br><p>Email : ${contact.email},</p></br><p>Message: ${contact.message}!</p>`
             };
             const resp: any = await mailTransporter.sendMail(mailDetails);
-            console.log(resp);
             await contact.save();
             return res.status(201).json({
                 contact
             });
         } catch (error: any) {
-            console.log(error);
             if (error.response) {
-                return res.status(400).json({ err: error.response.body });
+                return res.status(400).json({ err: error.response });
             }
             return res.status(500).json({ err: error.message });
         }
