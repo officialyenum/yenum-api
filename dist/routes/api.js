@@ -18,6 +18,7 @@ const ai21_1 = require("@officialyenum/ai21");
 const auth_route_1 = __importDefault(require("./auth.route"));
 const user_route_1 = __importDefault(require("./user.route"));
 const game_route_1 = __importDefault(require("./game.route"));
+const contact_route_1 = __importDefault(require("./contact.route"));
 const anonymous_message_route_1 = __importDefault(require("./anonymous-message.route"));
 const router = (0, express_1.Router)();
 /** Set up your api routes here */
@@ -30,8 +31,10 @@ router.use('/auth', auth_route_1.default);
 router.use('/users', user_route_1.default);
 // Game routes
 router.use('/games', game_route_1.default);
-// Game routes
-router.use('/anonymous-message', anonymous_message_route_1.default);
+// Contact routes
+router.use('/contacts', contact_route_1.default);
+// Anonymous routes
+router.use('/anonymous-messages', anonymous_message_route_1.default);
 router.get('/ai', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const token = process.env.AI21_TOKEN;
     const ai = new ai21_1.AI21(token);

@@ -33,6 +33,10 @@ const AnonymousMessageSchema = new mongoose_1.Schema({
         type: String,
         required: true
     },
+    old_createdAt: {
+        type: Date,
+        nullable: true
+    },
 }, {
     timestamps: true
 });

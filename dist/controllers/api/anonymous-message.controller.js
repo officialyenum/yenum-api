@@ -105,8 +105,8 @@ AnonymousMessageController.sync = (req, res, next) => __awaiter(void 0, void 0, 
         const messagesToCreateOrUpdate = data.data.map((message) => ({
             content: message.content,
             published: message.published,
+            old_createdAt: message.created_at,
             createdAt: message.created_at,
-            updatedAt: message.updated_at,
         }));
         for (const messageData of messagesToCreateOrUpdate) {
             yield AnonymousMessage_1.default.findOneAndUpdate({ content: messageData.content }, messageData, { upsert: true });

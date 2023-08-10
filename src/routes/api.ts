@@ -7,6 +7,7 @@ import { AI21 } from "@officialyenum/ai21";
 import authRoutes from './auth.route';
 import userRoutes from './user.route';
 import gameRoutes from './game.route';
+import contactRoutes from './contact.route';
 import anonymousMessageRoutes from './anonymous-message.route';
 
 import { Request, Response, NextFunction } from 'express';
@@ -26,8 +27,10 @@ router.use('/auth', authRoutes);
 router.use('/users', userRoutes);
 // Game routes
 router.use('/games', gameRoutes);
-// Game routes
-router.use('/anonymous-message', anonymousMessageRoutes);
+// Contact routes
+router.use('/contacts', contactRoutes);
+// Anonymous routes
+router.use('/anonymous-messages', anonymousMessageRoutes);
 
 router.get('/ai', async (req: Request, res: Response, next: NextFunction) => {
 

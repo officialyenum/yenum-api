@@ -15,6 +15,7 @@ const MONGO_URL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOS
 const SERVER_TOKEN_EXPIRETIME = process.env.SERVER_TOKEN_EXPIRETIME || 3600;
 const SERVER_TOKEN_ISSUER = process.env.SERVER_TOKEN_ISSUER || 'coolIssuer';
 const SERVER_TOKEN_SECRET = process.env.SERVER_TOKEN_SECRET || 'superencryptedsecret';
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const SERVER_PORT = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 1337;
 exports.config = {
     mongo: {
@@ -28,6 +29,7 @@ exports.config = {
         expireTime: SERVER_TOKEN_EXPIRETIME,
         secret: SERVER_TOKEN_SECRET,
         issuer: SERVER_TOKEN_ISSUER
-    }
+    },
+    transportKey: SENDGRID_API_KEY
 };
 //# sourceMappingURL=config.js.map

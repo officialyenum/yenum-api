@@ -97,8 +97,8 @@ class AnonymousMessageController {
             const messagesToCreateOrUpdate = data.data.map((message: any) => ({
                 content: message.content,
                 published: message.published,
+                old_createdAt: message.created_at,
                 createdAt: message.created_at,
-                updatedAt: message.updated_at,
             }));
             for (const messageData of messagesToCreateOrUpdate) {
                 await AnonymousMessage.findOneAndUpdate(

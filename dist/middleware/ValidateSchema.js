@@ -66,6 +66,20 @@ exports.Schemas = {
         update: joi_1.default.object({
             content: joi_1.default.string().required(),
         })
+    },
+    contact: {
+        create: joi_1.default.object({
+            name: joi_1.default.string().required(),
+            email: joi_1.default.string().email().required(),
+            project: joi_1.default.string().required(),
+            message: joi_1.default.string().required(),
+        }),
+        update: joi_1.default.object({
+            name: joi_1.default.string().required(),
+            email: joi_1.default.string().email().required(),
+            project: joi_1.default.string().required(),
+            message: joi_1.default.string().required(),
+        })
     }
 };
 //# sourceMappingURL=ValidateSchema.js.map

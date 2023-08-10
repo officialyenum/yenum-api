@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import Logging from '../library/Logging';
 import { IUser } from '../models/User';
 import { IGame } from '../models/Game';
+import { IContact } from '../models/Contact';
 import { IAnonymousMessage } from '../models/AnonymousMessage';
 
 export const ValidateSchema = (schema: ObjectSchema) => {
@@ -54,6 +55,20 @@ export const Schemas = {
         }),
         update: Joi.object<IAnonymousMessage>({
             content: Joi.string().required(),
+        })
+    },
+    contact: {
+        create: Joi.object<IContact>({
+            name: Joi.string().required(),
+            email: Joi.string().email().required(),
+            project: Joi.string().required(),
+            message: Joi.string().required(),
+        }),
+        update: Joi.object<IContact>({
+            name: Joi.string().required(),
+            email: Joi.string().email().required(),
+            project: Joi.string().required(),
+            message: Joi.string().required(),
         })
     }
 };
